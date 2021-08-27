@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Resizing</title>
+</head>
+
+<body>
+    
+    <div style="margin-top:50px">
+
+        <input id="imageFile" type="file">
+
+    </div>
+
+    <div style="margin-top:50px">
+        <label for="width">가로 : </label>
+        <input type="text" id="width">
+        <label for="height">세로 : </label>
+        <input type="text" id="height">
+        <input type="button" value="Resize Image" onclick="ResizeImage()" />
+    </div>
+
+    <div id="preview" style="margin-top:50px">
+        <canvas id="output"></canvas>
+    </div>
+    <script language="javascript">
+        function ResizeImage() {
+            const filesToUpload = document.getElementById('imageFile').files;
+            const file = filesToUpload[0];
+
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+
+            // 파일이 읽혀지면 아래 함수가 실행됩니다
+            reader.onload = function (e) {
+                const img = new Image();
+                img.src = e.target.result;
+                img.addEventListener('load',()=>{
+                    const canvas = document.getElementById('output');
+                    
+                    // canvas 크기를 변경해 줍니다.
+                    canvas.width = document.getElementById("width").value;
+                    canvas.height = document.getElementById("height").value;
+    
+                    const ctx = canvas.getContext("2d");
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    
+                })
+            }
+        }
+    </script>
+</body>
+
+</html>
