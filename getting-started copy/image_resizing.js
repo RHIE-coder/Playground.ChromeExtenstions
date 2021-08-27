@@ -1,4 +1,10 @@
-console.log("image resizing.js is loaded")
+console.log("image resizing.js is loaded!!!")
+
+//to solve csp issue
+window.onload = e =>{
+    const do_resize = document.getElementById('do-resize');
+    do_resize.addEventListener('click', ResizeImage);
+}
 
 function ResizeImage() {
     const filesToUpload = document.getElementById('imageFile').files;

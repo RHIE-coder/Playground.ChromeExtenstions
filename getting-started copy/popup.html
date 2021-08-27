@@ -24,7 +24,9 @@
     <br>
     <label for="height">세로 : </label>
     <input type="text" id="height">
-    <input type="button" value="Resize Image" nonce='a1B2D3'  onclick="ResizeImage()" />
+    <!-- CSP ISSUE -->
+    <!-- <input type="button" value="Resize Image" nonce='a1B2D3'  onclick="ResizeImage()" /> -->
+    <input id="do-resize"type="button" value="Resize Image"/> <!-- remove inline js -->
   </div>
 
   <div id="preview" style="margin-top:50px">
